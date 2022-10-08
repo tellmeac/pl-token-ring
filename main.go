@@ -45,6 +45,8 @@ func (node *Node) Run() {
 				case t.TTL > 0:
 					t.TTL -= 1
 					node.nextC <- t
+				default:
+					log.Printf("Token is expired (%+v))", t)
 				}
 			case <-node.doneC:
 				return
