@@ -5,8 +5,7 @@ Laboratory work
 ## Launch
 
 ```bash
-export ELEMENTS_COUNT=100
-go run . $ELEMENTS_COUNT
+go run . 500
 ```
 
 ## Posting tokens 
