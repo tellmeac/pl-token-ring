@@ -1,4 +1,4 @@
-# Token Ring. 
+# Token Ring
 
 Laboratory work
 
