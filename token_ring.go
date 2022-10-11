@@ -42,8 +42,7 @@ func NewTokenRing(size int) *TokenRing {
 	}
 	tr.Nodes = append(tr.Nodes, firstNode)
 
-	var i int
-	for i = 1; i < size; i++ {
+	for i := 1; i < size; i++ {
 		tr.Nodes = append(tr.Nodes, &Node{
 			ID:      i,
 			BeforeC: tr.Nodes[i-1].NextC,
