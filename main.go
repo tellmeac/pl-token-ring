@@ -26,16 +26,13 @@ type Server struct {
 }
 
 func (s Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	switch r.Method {
-	case http.MethodPost:
+	if r.Method ==  http.MethodPost {
 		var token Token
 		if err := json.NewDecoder(r.Body).Decode(&token); err != nil {
 			w.WriteHeader(http.StatusBadRequest)
 			return
 		}
-
 		s.Target <- token
-
 		w.WriteHeader(http.StatusOK)
 	}
 }
@@ -46,13 +43,10 @@ func main() {
 	if chainSize == nil {
 		log.Fatal("Expected to provide int value, number of nodes in a token ring")
 	}
-
 	tRing := NewTokenRing(*chainSize)
-
 	server := Server{
 		Target: tRing.Run(),
 	}
-
 	if err := http.ListenAndServe(":8080", server); err != nil {
 		log.Fatalf("Server failed: %s", err)
 	}
