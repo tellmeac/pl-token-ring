@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package main
+package ring
 
 import "log"
 
 // Token is a message type.
 type Token struct {
 	Data     string `json:"data"`
-	Reciever int    `json:"reciever"`
+	Receiver int    `json:"receiver"`
 	TTL      int    `json:"ttl"`
 }
 
@@ -79,12 +79,12 @@ func (node *Node) Run() {
 
 func (node *Node) process(t Token) {
 	switch {
-	case t.Reciever == node.ID:
-		log.Printf("Token has been accepted by %d; message: %s (with left ttl = %d)", t.Reciever, t.Data, t.TTL)
+	case t.Receiver == node.ID:
+		log.Printf("Token has been accepted by %d; message: %s (with left ttl = %d)", t.Receiver, t.Data, t.TTL)
 	case t.TTL > 0:
 		t.TTL -= 1
 		node.NextC <- t
 	default:
-		log.Printf("Token for %d is expired", t.Reciever)
+		log.Printf("Token for %d is expired", t.Receiver)
 	}
 }

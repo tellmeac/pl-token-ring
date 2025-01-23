@@ -1,6 +1,6 @@
-# Token Ring
+# Token ring
 
-Laboratory work
+Лабораторная работа.
 
 ## Launch
 
@@ -8,8 +8,12 @@ Laboratory work
 go run . 500
 ```
 
-## Posting tokens 
+## Example
 
 ```bash
-curl -d '{"data":"hello world", "ttl": 100, "reciever": 0}' http:/localhost:8080
+go run ./cmd/server -n 12
+```
+
+```bash
+curl -d '{"data":"hello world", "ttl": 100, "receiver": 0}' http:/localhost:8080
 ```
